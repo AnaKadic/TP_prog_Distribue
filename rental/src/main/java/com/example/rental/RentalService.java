@@ -58,5 +58,23 @@ public class RentalService {
         }
         return new ArrayList<>();
     }
+    @GetMapping("/cars/{plateNumber}/available")
+    public boolean isAvailable(
+            @PathVariable String plateNumber,
+            @RequestParam String begin,
+            @RequestParam String end) {
+
+        Dates requested = new Dates();
+        requested.setBegin(begin);
+        requested.setEnd(end);
+
+        for (Car car : cars) {
+            if (car.getPlateNumber().equalsIgnoreCase(plateNumber)) {
+                return car.isAvailable(requested);
+            }
+        }
+        return false; // ou tu peux lever une 404 si tu veux
+    }
+
 
 }
