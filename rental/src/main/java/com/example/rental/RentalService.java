@@ -48,4 +48,15 @@ public class RentalService {
 
         return ResponseEntity.status(404).body("Voiture non trouvée.");
     }
+    
+    @GetMapping("/cars/{plateNumber}/reservations")
+    public List<Dates> getReservations(@PathVariable String plateNumber) {
+        for (Car car : cars) {
+            if (car.getPlateNumber().equalsIgnoreCase(plateNumber)) {
+                return car.getReservations();
+            }
+        }
+        return new ArrayList<>();
+    }
+
 }
