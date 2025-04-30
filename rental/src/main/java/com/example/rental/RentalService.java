@@ -58,6 +58,7 @@ public class RentalService {
         }
         return new ArrayList<>();
     }
+    
     @GetMapping("/cars/{plateNumber}/available")
     public boolean isAvailable(
             @PathVariable String plateNumber,
@@ -73,8 +74,10 @@ public class RentalService {
                 return car.isAvailable(requested);
             }
         }
-        return false; // ou tu peux lever une 404 si tu veux
-    }
+        return false; 
+    }	
+    
+    
 
 
 }
